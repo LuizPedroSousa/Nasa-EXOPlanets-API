@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --exit-child --poll --inspect --transpile-only --no-deps --respawn --ignore-watch node_modules src/shared/infra/http/server.ts",
-    "test": "jest"
+    "test": "jest",
+    "test:ci": "NODE_ENV=test jest --ci --reporters=default --reporters=jest-junit --detectOpenHandles --forceExit"
   },
   "keywords": [],
   "author": "",
