@@ -1,0 +1,19 @@
+name: EXO-Planets Node.js CI Tests
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup node
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    - name: Run build
+      run: yarn
+    - name: Run tests
+      run: yarn test:ci
