@@ -1,7 +1,7 @@
-import corsOrigin from "cors";
-import { CorsOriginException } from "../shared/infra/http/exceptions/CorsOriginException";
+import corsOrigin from 'cors';
+import { CorsOriginException } from '../infra/http/exceptions/CorsOriginException';
 
-const allowedOrigins = ["http://localhost:3000", "https://localhost:3001"];
+const allowedOrigins = ['http://localhost:3000', 'https://localhost:3001'];
 
 const cors = corsOrigin({
   origin: (origin, callback) => {
