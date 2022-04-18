@@ -2,7 +2,7 @@ import { left, right } from '@shared/either';
 import { InvalidPlanetDispositionException } from './exceptions/InvalidPlanetDispositionException';
 import { PlanetDisposition } from './PlanetDisposition';
 
-describe('[UNIT] - [Planets] - PlanetHabitable ValueObject', () => {
+describe('[UNIT] - [Planets] - PlanetDisposition ValueObject', () => {
   it('should be able return PlanetDisposition, when disposition is confirmed', () => {
     const planetDispositionOrError = PlanetDisposition.create('CONFIRMED');
 
