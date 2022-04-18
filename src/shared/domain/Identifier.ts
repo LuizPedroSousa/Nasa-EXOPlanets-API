@@ -19,4 +19,3 @@ export class Identifier<T> {
     return this.value;
   }
 }
-

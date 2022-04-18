@@ -5,11 +5,11 @@ interface ValueObjectProps {
 }
 
 export abstract class ValueObject<T extends ValueObjectProps> {
-  constructor(protected props: T) {
+  constructor(readonly props: T) {
     this.props = Object.freeze(props);
   }
 
-  equals(other: ValueObject<T>): boolean {
+  public equals(other: ValueObject<T>): boolean {
     if (other === null || other === undefined) {
       return false;
     }
