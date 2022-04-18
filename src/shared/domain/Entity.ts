@@ -5,7 +5,7 @@ const isEntity = (other: any): other is Entity<any> => {
 };
 
 export abstract class Entity<T> {
-  constructor(readonly props: T, protected readonly id?: UniqueIdentifier) {
+  constructor(readonly props: T, readonly id?: UniqueIdentifier) {
     this.id = id || new UniqueIdentifier();
     this.props = props;
   }
