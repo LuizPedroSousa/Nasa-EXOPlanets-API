@@ -1,5 +1,5 @@
 import corsOrigin from 'cors';
-import { CorsOriginException } from '../infra/http/exceptions/CorsOriginException';
+import { CorsOriginException } from '../shared/infra/exceptions/CorsOriginException';
 
 const allowedOrigins = ['http://localhost:3000', 'https://localhost:3001'];
 
