@@ -19,7 +19,12 @@ export default {
   collectCoverage: true,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
-  collectCoverageFrom: ['<rootDir>/src/modules/**/**/*.ts', '<rootDir>/src/shared/**/*.ts', '!**/node_modules/**'],
+  collectCoverageFrom: [
+    '<rootDir>/src/modules/**/**/*.ts',
+    '<rootDir>/src/shared/**/*.ts',
+    '<rootDir>/src/infra/**/*.ts',
+    '!**/node_modules/**',
+  ],
 
   // The directory where Jest should output its coverage files
   coverageDirectory: 'coverage',
@@ -48,7 +53,6 @@ export default {
   // forceCoverageMatch: [],
 
   // A path to a module which exports an async function that is triggered once before all test suites
-  // globalSetup: undefined,
 
   // A path to a module which exports an async function that is triggered once after all test suites
   // globalTeardown: undefined,
@@ -79,6 +83,7 @@ export default {
     prefix: '<rootDir>/src/',
   }),
 
+  globalSetup: '<rootDir>/src/infra/test/setup.ts',
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
 
