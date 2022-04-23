@@ -1,1 +1,2 @@
-import "./providers";
+import './providers';
+import '@modules/planets/infra/container';
