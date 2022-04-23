@@ -20,4 +20,14 @@ export abstract class ValueObject<T extends ValueObjectProps> {
 
     return shallowEqual(this.props, other.props);
   }
+
+  public toJSON(): T {
+    const propsKeys = Object.keys(this.props);
+
+    if (propsKeys.length === 1 && propsKeys[0] === 'value') {
+      return this.props.value;
+    }
+
+    return this.props;
+  }
 }
