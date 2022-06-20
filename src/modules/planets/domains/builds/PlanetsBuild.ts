@@ -21,7 +21,7 @@ export class PlanetsBuild {
           effective_temperature: '1',
           smet: '1',
         }),
-      telescope: data?.telescope || 'Kepler',
+      telescope: data?.telescope || 'kepler',
     };
 
     return planet;

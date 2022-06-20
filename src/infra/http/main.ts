@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+import '../containers';
 import 'express-async-errors';
 import dotenv, { DotenvConfigOutput } from 'dotenv';
 import express, { Express } from 'express';

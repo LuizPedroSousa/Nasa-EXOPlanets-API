@@ -15,6 +15,10 @@ export class Identifier<T> {
     return this.value === id.getValue();
   }
 
+  public toString(): string {
+    return String(this.value);
+  }
+
   public getValue(): T {
     return this.value;
   }

@@ -10,6 +10,7 @@
     "paths": {
       "@modules/*": ["modules/*"],
       "@config/*": ["config/*"],
+      "@infra/*": ["infra/*"],
       "@shared/*": ["shared/*"]
     },
     "esModuleInterop": true,
