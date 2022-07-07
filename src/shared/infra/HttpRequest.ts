@@ -6,10 +6,12 @@ export interface File {
   destination: string;
   filename: string;
   path: string;
-  size: string;
+  size: number;
 }
 
 export interface HttpRequest {
   body?: any;
   file?: File;
+  query?: any;
+  params?: any;
 }
