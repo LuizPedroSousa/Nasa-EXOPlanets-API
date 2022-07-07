@@ -9,7 +9,7 @@ const importKeplerPlanetsController = container.resolve(ImportKeplerPlanetsContr
 const keplerRouter = Router();
 
 keplerRouter.post(
-  '/import',
+  '/',
   ensureUpload.handle({ file: 'planets', extensions: ['csv'] }),
   routeAdapter(importKeplerPlanetsController),
 );
