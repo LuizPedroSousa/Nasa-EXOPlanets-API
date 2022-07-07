@@ -4,9 +4,9 @@ import { Stellar } from '@modules/stellars/Stellar';
 import { UseCase } from '@shared/domain/UseCase';
 import { left, right } from '@shared/either';
 import { injectable, inject } from 'tsyringe';
-import { ImportKeplerPlanetsDTO } from '../dtos/ImportKeplerPlanetsDTO';
-import { PlanetsRepository } from '../ports/PlanetsRepository';
-import { ImportKeplerPlanetsResponse } from '../responses/ImportKeplerPlanetsResponse';
+import { ImportKeplerPlanetsDTO } from './dtos/ImportKeplerPlanetsDTO';
+import { PlanetsRepository } from '../../ports/PlanetsRepository';
+import { ImportKeplerPlanetsResponse } from './responses/ImportKeplerPlanetsResponse';
 
 @injectable()
 export class ImportKeplerPlanetsUseCase implements UseCase<ImportKeplerPlanetsDTO, ImportKeplerPlanetsResponse> {

@@ -1,6 +1,6 @@
 import { Planet, PlanetProps } from '@modules/planets/domains/Planet';
 import { PlanetNotFoundException } from '@modules/planets/useCases/exceptions/PlanetNotFoundException';
-import { PlanetsRepository } from '@modules/planets/useCases/ports/PlanetsRepository';
+import { PlanetsRepository } from '@modules/planets/ports/PlanetsRepository';
 import { UniqueIdentifier } from '@shared/domain/UniqueIdentifier';
 import { Either, left, right } from '@shared/either';
 

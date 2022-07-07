@@ -1,6 +1,6 @@
-import { ImportKeplerPlanetsDTO } from '@modules/planets/useCases/dtos/ImportKeplerPlanetsDTO';
+import { ImportKeplerPlanetsDTO } from '@modules/planets/useCases/kepler/dtos/ImportKeplerPlanetsDTO';
 import { ImportKeplerPlanetsUseCase } from '@modules/planets/useCases/kepler/ImportKeplerPlanetsUseCase';
-import { ImportKeplerPlanetsResponse } from '@modules/planets/useCases/responses/ImportKeplerPlanetsResponse';
+import { ImportKeplerPlanetsResponse } from '@modules/planets/useCases/kepler/responses/ImportKeplerPlanetsResponse';
 import { BaseException } from '@shared/domain/BaseException';
 import { UseCase } from '@shared/domain/UseCase';
 import { BaseController } from '@shared/infra/BaseController';
