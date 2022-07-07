@@ -48,11 +48,12 @@ describe('[FUNCTIONAL] - [Planets] - ImportKeplerPlanets UseCase', () => {
     const importKeplerPlanetsUseCase = new ImportKeplerPlanetsUseCase(planetsRepository, csvParserProvider);
 
     const existingPlanet = PlanetsBuild.generate();
-    const planetCreated = PlanetsBuild.generate();
 
     await planetsRepository.save(PlanetsBuild.create(existingPlanet));
 
-    const csv = PlanetsBuild.createCSV({ data: [existingPlanet, existingPlanet, existingPlanet, planetCreated] });
+    const planetToCreate = PlanetsBuild.generate({ name: 'KOI-7016.01' });
+
+    const csv = PlanetsBuild.createCSV({ data: [existingPlanet, existingPlanet, existingPlanet, planetToCreate] });
 
     const file_identifier = 'valid_kepler_planets.csv';
 
