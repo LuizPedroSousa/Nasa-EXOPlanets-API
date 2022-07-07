@@ -20,7 +20,7 @@ describe('[INTEGRATION] - [Planets] - ImportKeplerPlanetsController', () => {
     await FileHelper.writeFile(csv, file_identifier);
 
     const { status, body } = await request(main.app)
-      .post('/planets/kepler/import')
+      .post('/planets/kepler')
       .set('Accept', 'application/json')
       .attach('planets', FileHelper.getFilePath(file_identifier));
 
@@ -59,7 +59,7 @@ describe('[INTEGRATION] - [Planets] - ImportKeplerPlanetsController', () => {
     await FileHelper.writeFile(csv, file_identifier);
 
     const { status, body } = await request(main.app)
-      .post('/planets/kepler/import')
+      .post('/planets/kepler')
       .set('Accept', 'application/json')
       .attach('planets', FileHelper.getFilePath(file_identifier));
 
@@ -79,7 +79,7 @@ describe('[INTEGRATION] - [Planets] - ImportKeplerPlanetsController', () => {
     await FileHelper.writeFile(csv, file_identifier);
 
     const { status, body } = await request(main.app)
-      .post('/planets/kepler/import')
+      .post('/planets/kepler')
       .set('Accept', 'application/json')
       .attach('planets', FileHelper.getFilePath(file_identifier));
 
@@ -90,7 +90,7 @@ describe('[INTEGRATION] - [Planets] - ImportKeplerPlanetsController', () => {
   });
 
   it('should give a status 400 when send an empty file', async () => {
-    const { status, body } = await request(main.app).post('/planets/kepler/import').set('Accept', 'application/json');
+    const { status, body } = await request(main.app).post('/planets/kepler').set('Accept', 'application/json');
 
     expect(status).toBe(400);
 

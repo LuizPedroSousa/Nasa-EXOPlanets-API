@@ -1,7 +1,7 @@
 import { Planet, PlanetProps } from '@modules/planets/domains/Planet';
 import { UniqueIdentifier } from '@shared/domain/UniqueIdentifier';
 import { Either } from '@shared/either';
-import { PlanetNotFoundException } from '../exceptions/PlanetNotFoundException';
+import { PlanetNotFoundException } from '../useCases/exceptions/PlanetNotFoundException';
 
 export interface PlanetsRepository {
   save(planet: Planet | Planet[]): Promise<Planet | Planet[]>;

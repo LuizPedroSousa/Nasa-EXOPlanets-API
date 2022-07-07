@@ -1,15 +1,18 @@
+import { ImportKeplerPlanetsDTO } from '@modules/planets/useCases/kepler/dtos/ImportKeplerPlanetsDTO';
 import { ImportKeplerPlanetsUseCase } from '@modules/planets/useCases/kepler/ImportKeplerPlanetsUseCase';
+import { ImportKeplerPlanetsResponse } from '@modules/planets/useCases/kepler/responses/ImportKeplerPlanetsResponse';
+import { BaseException } from '@shared/domain/BaseException';
+import { UseCase } from '@shared/domain/UseCase';
 import { BaseController } from '@shared/infra/BaseController';
 import { MissingParamsException } from '@shared/infra/exceptions/MissingParamsException';
 import { HttpResponse } from '@shared/infra/HttpResponse';
-
-import { injectable, inject } from 'tsyringe';
+import { inject, injectable } from 'tsyringe';
 
 @injectable()
 export class ImportKeplerPlanetsController extends BaseController {
   constructor(
     @inject(ImportKeplerPlanetsUseCase)
-    private useCase: ImportKeplerPlanetsUseCase,
+    private useCase: UseCase<ImportKeplerPlanetsDTO, ImportKeplerPlanetsResponse>,
   ) {
     super();
   }
@@ -26,24 +29,26 @@ export class ImportKeplerPlanetsController extends BaseController {
     });
 
     if (planetsOrError.isLeft()) {
-      const errors: any = {
-        InvalidPlanetDispositionException: this.badRequest(planetsOrError.value.message),
-        InvalidCSVException: this.badRequest(planetsOrError.value.message),
-      };
-
-      const exception = planetsOrError.value;
-
-      const handler = errors[exception.name];
-
-      if (!handler) {
-        return this.fail();
-      }
-
-      return handler;
+      return this.getException(planetsOrError.value);
     }
 
     return this.created({
       planets: planetsOrError.value.map(planet => planet.toJSON()),
     });
+  }
+
+  private getException(exception: BaseException) {
+    const errors: any = {
+      InvalidPlanetDispositionException: this.badRequest(exception.message),
+      InvalidCSVException: this.badRequest(exception.message),
+    };
+
+    const handler = errors[exception.name];
+
+    if (!handler) {
+      return this.fail();
+    }
+
+    return handler;
   }
 }
