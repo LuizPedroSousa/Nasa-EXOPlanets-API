@@ -14,7 +14,7 @@ beforeEach(async () => {
   await FileHelper.dropFolder();
 });
 
-describe('[FUNCTIONAL] - [Planets] - ImportKeplerPlanets UseCase', () => {
+describe('[FUNCTIONAL] - [Planets/Kepler] - ImportKeplerPlanets UseCase', () => {
   it('should be able to import a list of planets', async () => {
     const planetsRepository = new InMemoryPlanetsRepository();
     const csvParserProvider = new CSVCsvParserProvider();
@@ -47,7 +47,7 @@ describe('[FUNCTIONAL] - [Planets] - ImportKeplerPlanets UseCase', () => {
 
     const importKeplerPlanetsUseCase = new ImportKeplerPlanetsUseCase(planetsRepository, csvParserProvider);
 
-    const existingPlanet = PlanetsBuild.generate();
+    const existingPlanet = PlanetsBuild.generate({ telescope: 'kepler' });
 
     await planetsRepository.save(PlanetsBuild.create(existingPlanet));
 

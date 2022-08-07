@@ -10,9 +10,12 @@ beforeEach(async () => {
   await FileHelper.dropFolder();
 });
 
-describe('[INTEGRATION] - [Planets] - ImportKeplerPlanetsController', () => {
+describe('[INTEGRATION] - [Planets/kepler] - ImportKeplerPlanetsController', () => {
   it('should give a status 201 when the planets are imported', async () => {
-    const planets = [PlanetsBuild.generate(), PlanetsBuild.generate({ name: 'Jupiter' })];
+    const planets = [
+      PlanetsBuild.generate({ telescope: 'kepler' }),
+      PlanetsBuild.generate({ name: 'Jupiter', telescope: 'kepler' }),
+    ];
     const csv = PlanetsBuild.createCSV({ data: planets });
 
     const file_identifier = 'valid_kepler_planets.csv';
