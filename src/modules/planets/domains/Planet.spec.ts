@@ -22,11 +22,6 @@ describe('[UNIT] - [Planets] - Planet Entity', () => {
             value: data.disposition,
           },
         },
-        habitable: {
-          props: {
-            value: true,
-          },
-        },
       }),
     );
   });

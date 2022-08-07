@@ -15,6 +15,10 @@ export class PlanetDisposition extends ValueObject<PlanetDispositionProps> {
     super(props);
   }
 
+  public static save(value: string): PlanetDisposition {
+    return new PlanetDisposition({ value });
+  }
+
   public static create(value: string): Either<InvalidPlanetDispositionException, PlanetDisposition> {
     if (!PlanetDisposition.validate(value)) {
       return left(new InvalidPlanetDispositionException(value));

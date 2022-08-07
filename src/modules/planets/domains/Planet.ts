@@ -4,7 +4,8 @@ import { Either, left, right } from '@shared/either';
 import { PlanetHabitable } from './PlanetHabitable';
 import { PlanetDisposition } from './PlanetDisposition';
 import { InvalidPlanetDispositionException } from './exceptions/InvalidPlanetDispositionException';
-import { CreateStellarDTO, Stellar } from '@modules/stellars/Stellar';
+import { Stellar } from '@modules/stellars/Stellar';
+import { UniqueIdentifier } from '@shared/domain/UniqueIdentifier';
 
 export interface PlanetProps {
   name: string;
@@ -26,11 +27,27 @@ export interface CreatePlanetDTO {
 }
 
 export class Planet extends Entity<PlanetProps> {
-  private constructor(props: PlanetProps) {
-    super(props);
+  get disposition() {
+    return this.props.disposition.value;
   }
 
-  static create(data: CreatePlanetDTO): Either<InvalidPlanetDispositionException, Planet> {
+  get habitable() {
+    return this.props.habitable.value;
+  }
+
+  get stellar() {
+    return this.props.stellar;
+  }
+
+  private constructor(props: PlanetProps, id?: UniqueIdentifier) {
+    super(props, id);
+  }
+
+  static save({ id, ...data }: PlanetProps & { id: string }): Planet {
+    return new Planet(data, new UniqueIdentifier(id));
+  }
+
+  static create({ name, ...data }: CreatePlanetDTO): Either<InvalidPlanetDispositionException, Planet> {
     const dispositionOrError = PlanetDisposition.create(data.disposition);
 
     if (dispositionOrError.isLeft()) {
@@ -46,6 +63,7 @@ export class Planet extends Entity<PlanetProps> {
     return right(
       new Planet({
         ...data,
+        name: name || '-',
         habitable,
         disposition: dispositionOrError.value,
       }),

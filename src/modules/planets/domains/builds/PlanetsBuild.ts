@@ -5,23 +5,25 @@ interface CreateCSVDTO {
   data: Partial<CreatePlanetDTO>[];
 }
 
+import { faker } from '@faker-js/faker';
+
 export class PlanetsBuild {
-  static generate(data?: Partial<CreatePlanetDTO>) {
-    const planet = {
-      name: data?.name || 'Tatooine',
-      disposition: data?.disposition || 'CONFIRMED',
-      insolation: data?.insolation || 0.37,
-      radius: data?.radius || 1.5,
+  static generate(data?: Partial<CreatePlanetDTO>): CreatePlanetDTO {
+    const planet: CreatePlanetDTO = {
+      name: data?.name || faker.name.suffix(),
+      disposition: data?.disposition || faker.helpers.arrayElement(['CONFIRMED', 'CANDIDATE']),
+      insolation: data?.insolation || Number(faker.random.numeric()),
+      radius: data?.radius || Number(faker.random.numeric()),
       stellar:
         data?.stellar ||
         Stellar.create({
-          radius: 10,
-          mass: '1',
-          age: '1',
-          effective_temperature: '1',
-          smet: '1',
+          radius: Number(faker.random.numeric()),
+          mass: faker.random.numeric(),
+          age: faker.random.numeric(),
+          effective_temperature: faker.random.numeric(),
+          smet: faker.random.numeric(),
         }),
-      telescope: data?.telescope || 'kepler',
+      telescope: data?.telescope || faker.name.suffix(),
     };
 
     return planet;
