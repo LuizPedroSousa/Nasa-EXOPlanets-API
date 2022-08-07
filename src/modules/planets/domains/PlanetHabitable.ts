@@ -19,6 +19,10 @@ export class PlanetHabitable extends ValueObject<PlanetHabitableProps> {
     super(props);
   }
 
+  public static save(value: boolean): PlanetHabitable {
+    return new PlanetHabitable({ value });
+  }
+
   public static create(data: CreatePlanetHabitableDTO): PlanetHabitable {
     return new PlanetHabitable({ value: PlanetHabitable.isHabitable(data) });
   }

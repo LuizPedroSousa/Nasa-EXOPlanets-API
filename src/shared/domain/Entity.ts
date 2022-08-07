@@ -1,5 +1,5 @@
 import { UniqueIdentifier } from './UniqueIdentifier';
-import { ValueObject } from './ValueObject';
+import { isValueObject, ValueObject } from './ValueObject';
 
 const isEntity = (other: any): other is Entity<any> => {
   return other instanceof Entity;
@@ -28,16 +28,17 @@ export abstract class Entity<T> {
   }
 
   public toJSON(): T {
-    if (this.props instanceof ValueObject) {
-      return {
-        ...this.props.toJSON(),
-        id: this.id.getValue(),
-      };
-    }
+    const formattedProps = this.props as any;
+
+    Object.keys(formattedProps).forEach(key => {
+      if (isValueObject(formattedProps?.[key]) || isEntity(formattedProps?.[key])) {
+        formattedProps[key] = formattedProps[key].toJSON();
+      }
+    });
 
     return {
-      ...this.props,
       id: this.id.getValue(),
+      ...formattedProps,
     };
   }
 }

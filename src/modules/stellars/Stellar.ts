@@ -18,8 +18,12 @@ export interface CreateStellarDTO {
 }
 
 export class Stellar extends Entity<StellarProps> {
-  private constructor(props: StellarProps) {
-    super(props);
+  private constructor(props: StellarProps, id?: UniqueIdentifier) {
+    super(props, id);
+  }
+
+  static save({ id, ...data }: StellarProps & { id: string }): Stellar {
+    return new Stellar(data, new UniqueIdentifier(id));
   }
 
   static create(data: CreateStellarDTO): Stellar {
