@@ -4,6 +4,10 @@ interface ValueObjectProps {
   [key: string]: any;
 }
 
+export const isValueObject = (other: any): other is ValueObject<any> => {
+  return other instanceof ValueObject;
+};
+
 export abstract class ValueObject<T extends ValueObjectProps> {
   constructor(readonly props: T) {
     this.props = Object.freeze(props);
